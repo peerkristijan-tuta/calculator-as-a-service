@@ -1,0 +1,38 @@
+services:
+    calculator-facade:
+        build:
+            context: .
+            dockerfile: CalculatorFacade/Dockerfile
+        ports:
+            - "8101:8101"
+        depends_on:
+            - straightforward-expression
+    straightforward-expression:
+        build:
+            context: .
+            dockerfile: StraightforwardExpression/Dockerfile
+        ports:
+            - "8102:8102"
+        depends_on:
+            - bodmas-expression
+            - invalid-expression 
+    bodmas-expression:
+        build:
+            context: .
+            dockerfile: BodmasExpression/Dockerfile
+        ports:
+            - "8103:8103"
+        depends_on:
+            - bracketed-expression
+    bracketed-expression:
+        build:
+            context: .
+            dockerfile: BracketedExpression/Dockerfile
+        ports:
+            - "8104:8104"
+    invalid-expression:
+        build:
+            context: .
+            dockerfile: InvalidExpression/Dockerfile
+        ports:
+            - "8105:8105"
